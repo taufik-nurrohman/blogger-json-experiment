@@ -326,7 +326,7 @@ body {background-color:#eee}
 
 
 <!-- Just a message -->
-<div class="message"><p>Hello&hellip; This page demonstrates how I use <code>removeChild()</code> and <code>.appendChild()</code> to remove and update the JSON callback script when the screen scrolls have reached the end.</p><p>By the way, this page will continue to load up on the last post. I hope you don't use this page as a fast reading media for my blog posts. Visit <a href="http://www.dte.web.id" title="DTE :]">the original blog</a> and read the articles through the original pages to support the development of my blog. Thank you very much.</p></div>
+<div class="message"><p>Hello&hellip; This page demonstrates how I use <code>removeChild()</code> and <code>.appendChild()</code> to remove and update the JSON callback script when the screen scrolls have reached to the end.</p><p>By the way, this page will continue to load up on the last post. I hope you don't use this page as a fast reading media for my blog posts. Visit <a href="http://www.dte.web.id" title="DTE :]">the original blog</a> and read the articles through the original blog post to support the development of my blog. Thank you very much.</p></div>
 <!-- End message -->
 
 
@@ -485,8 +485,8 @@ function loadJSON(url, loadTo) {
 			}
 		}
 		document.documentElement.firstChild.appendChild(script);
+		loaded = false;
 	}
-	loaded = false;
 }
 
 // WINDOW SCROLL EVENT: CHECK IF WE HAVE REACHED THE END

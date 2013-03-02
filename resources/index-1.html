@@ -37,6 +37,10 @@ You are allowed to learn, use, add a new attribution/making your own attribution
 html {overflow-y:scroll}
 body {background-color:#eee}
 
+
+
+
+
 /* Default Infinite Scroll Stylesheet */
 .blog-post-list {
   width:800px;
@@ -237,7 +241,7 @@ body {background-color:#eee}
   color:#ddd;
   background-color:#333;
   position:fixed;
-  bottom:-30px;
+  bottom:0;
   left:50%;
   margin-left:-50px;
   z-index:9999;
@@ -260,10 +264,12 @@ body {background-color:#eee}
     height:auto !important;
   }
 }
+
 @media (max-width:350px) {
   .blog-post-list {font-size:11px}
   .blog-post-list pre {font-size:100%}
 }
+
 
 
 
@@ -287,8 +293,15 @@ body {background-color:#eee}
   text-align:center;
 }
 
-.left {float:left}
-.right {float:right}
+.alignleft {
+  float:left;
+  margin:0 2em .5em 0;
+}
+
+.alignright {
+  float:right;
+  margin:0 0 .5em 2em;
+}
 
 .jsfiddle-demo {
   display:block;
@@ -377,7 +390,8 @@ loader.innerHTML = infiniteScroll.labels.loadingText;
 // SCRIPT FOR LOADING THE BLOG POSTS
 function loadPosts(json) {
 
-	var entry = json.feed.entry,
+	var handleDiv = document.createElement('div'),
+		entry = json.feed.entry,
 		skeleton = "",
 		date, content, link, commentNum, commentFeed, formUrl;
 
@@ -411,9 +425,9 @@ function loadPosts(json) {
 
 		// This private regex is created just to handle my blog post markup pattern
 		// Ignore/remove this if you want to develop all of this script
-		content = content.replace(/<div class="jsfiddle-demo(.*?)data-src="(.*?)"(.*?)div>/ig,"<iframe src=\"$2\" class=\"jsfiddle-demo\"></iframe>");
+		content = content.replace(/<div class="jsfiddle-demo(.*?)data-src="(.*?)"(.*?)div>/ig,"<iframe src=\"$2\" class=\"jsfiddle-demo\"></iframe>").replace(/ href="\//g," href=\"" + infiniteScroll.url + "/");
 		content = content.replace(/<code class="(.*?)">(.[\w\W\n]+?)<\/code>/ig, function(m) {
-			return m.replace(/\.(.*?)\(/g,".<span style='color:#666;'>[cencored]</span>(").replace(/(&lt;|&gt;)/ig,"<span style='color:#666;'>[this way]</span>").replace(/^/g,"<em>[Some code snippet just removed and [cencored]\nin order to make sure that you not just read my blog post\nfrom this experiment page.\nPlease visit the original blog post <a title='Read more...' href='" + link + "'>here</a>]</em>\n\n");
+			return m.replace(/\.(.*?)\(/g,".<span style='color:#666;'>[cencored]</span>(").replace(/(&lt;|&gt;)/ig,"<span style='color:#666;'>[this way]</span>").replace(/^/g,"<em>[Some code snippet just removed and [cencored]\nin order to make sure you not just read my blog post\nfrom this experiment page.\nPlease visit the original blog post <a title='Read more...' href='" + link + "'>here</a>]</em>\n\n");
 		});
 		// End private regex
 
@@ -426,7 +440,9 @@ function loadPosts(json) {
 
 	}
 
-	container.innerHTML += skeleton;
+	handleDiv.innerHTML = skeleton;
+	container.appendChild(handleDiv);
+
 	setTimeout(function() {
 		loader.style.bottom = '-30px';
 		loaded = true;
@@ -457,7 +473,9 @@ function loadPostComments(json) {
 			skeleton += '<li><div class="blog-post-comment-avatar"><img width="36" height="36" src="http:' + avatar + '" alt="' + author + '"></div><div class="blog-post-comment-item"><strong>' + commentator + ':</strong> ' + content + ' <span class="clear"></span><time class="blog-post-comment-comment-item-published" datetime="' + isopub + '" title="' + isopub + '">' + published + '</time></div></li>';
 
 		}
+
 		skeleton += '</ol>';
+
 	} else {
 		skeleton = '<div>' + infiniteScroll.labels.noComment + '</div>';
 	}

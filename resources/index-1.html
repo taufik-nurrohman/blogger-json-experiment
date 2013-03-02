@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta content="width=device-width,initial-scale=1,maximum-scale=1" name="viewport">
 <title>Experiment: Infinite Scroll with Blogger JSON</title>
+<link rel="shortcut icon" href="http://mini-web-tools.googlecode.com/svn/p/img/favicon.ico">
 
 
 
@@ -362,7 +363,8 @@ var infiniteScroll = {
 };
 // Config end.
 
-var index = 0,
+var init = 1, // First visit = true
+	index = 0,
 	loaded = true,
 	postNum = 0,
 	dynamicId = null,
@@ -467,9 +469,8 @@ function loadPostComments(json) {
 
 // SCRIPT FOR APPEND/REMOVE THE ASYNCHRONOUS CALLBACK SCRIPT WITH SOME LOGIC PARAMETERS
 function loadJSON(url, loadTo) {
-	index++;
 	dynamicId = loadTo;
-	var feedUrl = (url !== null) ? url : infiniteScroll.url + '/feeds/posts/default?alt=json-in-script&max-results=' + infiniteScroll.numpost + '&start-index=' + (infiniteScroll.numpost*index) + '&callback=loadPosts';
+	var feedUrl = (url !== null) ? url : infiniteScroll.url + '/feeds/posts/default?alt=json-in-script&max-results=' + infiniteScroll.numpost + '&start-index=' + ((init == 1) ? 1 : (infiniteScroll.numpost*index)+1) + '&callback=loadPosts';
 	if (loaded === true) {
 		var script = document.createElement('script');
 			script.type = "text/javascript";
@@ -487,16 +488,19 @@ function loadJSON(url, loadTo) {
 		document.documentElement.firstChild.appendChild(script);
 		loaded = false;
 	}
+	init = 0; // First visit = false
 }
 
 // WINDOW SCROLL EVENT: CHECK IF WE HAVE REACHED THE END
 window.onscroll = function() {
     if (navigator.userAgent.toLowerCase().indexOf("chrome") > -1 || navigator.userAgent.toLowerCase().indexOf("safari") > -1) {
         if (document.documentElement.scrollHeight == (document.body.scrollTop + document.documentElement.clientHeight)) {
+			index++;
 			loadJSON(null, null); // Update the callback script if we have reached end of the page
         }
     } else {
         if (document.documentElement.scrollHeight == (document.documentElement.scrollTop + document.documentElement.clientHeight)) {
+			index++;
             loadJSON(null, null); // Update the callback script if we have reached end of the page
         }
     }

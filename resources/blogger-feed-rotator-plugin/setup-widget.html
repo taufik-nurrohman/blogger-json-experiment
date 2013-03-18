@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Setup Widget</title>
+<link rel="shortcut icon" href="http://mini-web-tools.googlecode.com/svn/p/img/favicon.ico">
+<link rel="stylesheet" type="text/css" href="demo.css">
+<link rel="stylesheet" type="text/css" href="default-style.css">
+<style type="text/css">
+body {padding:50px 0}
+.col-group {
+  overflow:hidden;
+  text-align:left;
+  margin:0 auto;
+}
+.left-col {
+  width:48%;
+  float:left;
+  margin-left:2%;
+}
+.right-col {
+  width:43%;
+  float:right;
+  margin-right:2%;
+  overflow:auto;
+}
+.left-col table,
+.left-col table tr,
+.left-col table th,
+.left-col table td {border:none}
+.left-col table tr {border:1px solid black}
+.left-col table {
+  width:100%;
+  background-color:#f5f5f5;
+}
+.left-col table th {
+  width:30%;
+  font-weight:normal;
+  text-align:right;
+  background-color:white;
+}
+.left-col table .configuration-type,
+.left-col table .preview-cell {
+  background-color:#87ceeb;
+  font-weight:bold;
+  text-align:left;
+}
+.left-col table .preview-cell {text-align:center}
+#slider-rotator-wrapper {margin-top:1.5em}
+#preview-btn {
+  padding:1em 1.2em;
+  font-size:150%;
+  font-weight:normal;
+  cursor:pointer;
+  border:none;
+  background-color:#29438B;
+  color:white;
+}
+#preview-btn:hover {background-color:#172e6c}
+#preview-btn:active {background-color:#0a1a43}
+input[type="text"],
+select,
+textarea {
+  width:200px;
+  border:1px solid black;
+  padding:1px 1px;
+  margin:1px 0;
+  background-color:white;
+}
+input[type="text"].short {width:30px}
+input[type="text"].long {width:98%}
+select,textarea {width:auto}
+.custom-css {
+  width:100%;
+  height:200px;
+  overflow:auto;
+}
+.fixed-preview .right-col {
+  position:fixed;
+  top:0;
+  right:0;
+}
+.hidden {display:none}
+.code-block {border:1px dotted #444}
+</style>
+<style type="text/css" id="custom-css"></style>
+</head>
+<body class="setup-widget-page">
+
+<h1>Setup Widget</h1>
+
+<div class="col-group">
+	<div class="left-col">
+		<h3>Configuration &middot; <a href="#examples" title="Learn from the examples...">Examples</a></h3>
+		<table border="1">
+			<tr><th colspan="2" class="configuration-type">JQuery Library</th></tr>
+			<tr><td colspan="2">Have you already installed the <a href="http://jquery.com" title="JQuery">JQuery</a> library in your blog?<br><br><select class="jq-library"><option value="0" selected>No</option><option value="1">Yes</option></select><span> Add JQuery version <input type="text" class="short" value="1.9.1"> to this widget</span></td></tr>
+			<tr><th colspan="2" class="configuration-type">General</th></tr>
+			<tr><th>Blog URL:</th><td>Input your blog homepage URL as the blog post feed source:<br><br><input type="text" class="url" value="http://www.dte.web.id" onkeyup="$('.cat').val('');"></td></tr>
+			<tr><th>Number of post(s) to display:</th><td>How many posts you want to display?<br><br><input type="text" class="num-post short" value="5"></td></tr>
+			<tr><th>Open links in new tab?</th><td><strong>Yes</strong>, to make links automatically opens in a new window tab. <strong>No</strong> to make links open in the same page:<br><br><select class="new-tab-link"><option value="0" selected>No</option><option value="1">Yes</option></select></td></tr>
+			<tr><th>Length of posts summary:</th><td>Specify the length of the summary posts:<br><br><input type="text" class="summary-length short" value="60"> character(s)</td></tr>
+			<tr><th>Truncate the title text?</th><td><select class="title-length"><option value="0" selected>No</option><option value="1">Yes</option></select><span class="hidden"> Maximum length of text: <input type="text" value="auto" class="short" disabled></span></td></tr>
+			<tr><th>Sort posts under category:</th><td>Specify category of the posts you want to display. Leave blank to show all:<br><br><input type="text" class="cat" value=""></td></tr>
+			<tr><th>Elements:</th><td><input type="checkbox" class="show-detail" checked id="check-1"> <label for="check-1">Show details (title &amp; description) of blog posts</label><br><input type="checkbox" class="show-thumbnail" checked id="check-2"> <label for="check-2">Show thumbnails of blog posts</label></td></tr>
+			<tr><th colspan="2" class="configuration-type">Thumbnails</th></tr>
+			<tr><th>Thumbnail width:</th><td><input type="text" class="thumb-width short" value="250"> pixel</td></tr>
+			<tr><th>Thumbnail dimension:</th><td><select class="square-thumbnail"><option value="1" selected>Square thumbnail</option><option value="0">Scaled original dimension</option></select></td></tr>
+			<tr><th>Fallback thumbnail image:</th><td><input type="text" class="no-thumb long" value="http://3.bp.blogspot.com/-vpCFysMEZys/UOEhSGjkfnI/AAAAAAAAFwY/h1wuA5kfEhg/s72-c/grey.png"></td></tr>
+			<tr><th>Show navigation?</th><td><select class="show-nav"><option value="0">No</option><option value="1" selected>Yes, both next/prev and number</option><option value="2">Next/prev only</option><option value="3">Number only</option></select></td></tr>
+			<tr><th>Previous navigation label:</th><td><input type="text" class="nav-text-prev" value="&amp;lt;"></td></tr>
+			<tr><th>Next navigation label:</th><td><input type="text" class="nav-text-next" value="&amp;gt;"></td></tr>
+			<tr><th>Container ID:</th><td>Specify the HTML element ID that is used to display the slideshow/rotator:<br><br><input type="text" class="container-id" value="slider-rotator"></td></tr>
+			<tr><th colspan="2" class="configuration-type">Slideshow</th></tr>
+			<tr><th>Speed:</th><td><input type="text" class="short slideshow-speed" value="1000"></td></tr>
+			<tr><th>Slides automatically:</th><td><select class="slideshow-auto-slide"><option value="1" selected>Yes</option><option value="0">No</option></select></td></tr>
+			<tr><th>Interval:</th><td><input type="text" class="short slideshow-interval" value="6000"></td></tr>
+			<tr><th>Pause slideshow on hover?</th><td><select class="slideshow-hover-pause"><option value="1" selected>Yes</option><option value="0">No</option></select></td></tr>
+			<tr><th>Animate slideshow height?</th><td>Animate the slideshow/rotator to fit the visible item height:<br><br><select class="slideshow-auto-height"><option value="1">Yes</option><option value="0" selected>No</option></select></td></tr>
+			<tr><th>Slideshow change effect</th><td><strong>Normal:</strong> Slide item disappears with <em>fade-out</em> effect, then the next slide will appear with <em>fade-in</em> effect.<br>
+<strong>Cross Fade:</strong> <em>fade-in</em> and <em>fade-out</em> effects occur simultaneously between slide disappearing and appearing.<br><br><select class="slideshow-change"><option value="0" selected>Normal</option><option value="1">Cross Fade</option></select></td></tr>
+			<tr><th colspan="2" class="configuration-type">Custom CSS</th></tr>
+			<tr><th>Custom CSS code:</th><td><textarea class="custom-css"></textarea></td></tr>
+			<tr><th colspan="2" class="preview-cell"><button id="preview-btn">Update Preview &amp; Generate Code</button></th></tr>
+		</table>
+		<p id="examples">&nbsp;</p>
+		<h3>Learn From the Examples:</h3>
+		<ol>
+			<li><a href="index-1.html" target="_blank">Demo 1: Basic</a></li>
+			<li><a href="index-2.html" target="_blank">Demo 2: Show Posts under Category &#8220;Widget&#8221;</a></li>
+			<li><a href="index-3.html" target="_blank">Demo 3: About Thumbnails</a></li>
+			<li><a href="index-4.html" target="_blank">Demo 4: Thumbnail Only</a></li>
+			<li><a href="index-5.html" target="_blank">Demo 5: Text Only</a></li>
+			<li><a href="index-6.html" target="_blank">Demo 6: Multiple Feed Loading</a></li>
+			<li><a href="index-7.html" target="_blank">Demo 7: Casual Slideshow</a></li>
+			<li><a href="index-8.html" target="_blank">Demo 8: Example Callback Function to Animate the Slideshow Caption (1)</a></li>
+			<li><a href="index-9.html" target="_blank">Demo 9: Example Callback Function to Animate the Slideshow Caption (2)</a></li>
+		</ol>
+	</div>
+	<div class="right-col">
+		<h3><a href="#preview">Preview</a> | <a href="#code">Generated Code</a></h3>
+		<div id="preview" class="panel">
+			<div id="slider-rotator-wrapper"></div>
+		</div>
+		<div id="code" class="panel" style="display:none;">
+			<p><input type="checkbox" class="remove-comment" id="check-3"> <label for="check-3">Remove HTML, CSS &amp; JavaScript Comments</label> :: <a href="javascript:;" onclick="autoSelect(document.getElementById('copy-paste-code'));">Select All</a></p>
+			<pre id="copy-paste-code" class="hidden"></pre>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="blogger-feed-rotator.js"></script>
+<script type="text/javascript">
+
+var $container = $('#slider-rotator-wrapper'),
+	$previewBtn = $('#preview-btn'),
+	$result = $('#copy-paste-code'),
+	$customCSS = $('#custom-css'),
+	_config = {}, raw = "";
+
+$('.custom-css').val('.slider-rotator {\n  width:250px;\n  height:340px;\n}');
+
+// http://www.dte.web.id/2013/01/javascript-seleksi-teks-otomatis.html
+function autoSelect(a) {
+	var b, range;
+	if (window.getSelection) {
+		b = window.getSelection();
+		range = document.createRange();
+		range.selectNodeContents(a);
+		b.removeAllRanges();
+		b.addRange(range);
+	} else if (document.selection) {
+		b = document.selection.createRange().text;
+		range = document.body.createTextRange();
+		range.moveToElementText(a);
+		range.select();
+	}
+}
+
+function updateConfig() {
+	_config.url           = ($('.url').val() == "") ? 'http://www.dte.web.id' : $('.url').val();
+	_config.numPost       = ($('.num-post').val() == "") ? 5 : parseInt($('.num-post').val(),10);
+	_config.newTabLink    = ($('.new-tab-link').val() == "0") ? false : true;
+	_config.labelName     = ($('.cat').val() == "") ? null : $('.cat').val();
+	_config.showDetail    = ($('.show-detail').is(':checked')) ? true : false;
+	_config.summaryLength = ($('.summary-length').val() == "") ? 60 : parseInt($('.summary-length').val(),10);
+	_config.titleLength   = ($('.title-length').next().find('input').val() == "" || $('.title-length').next().find('input').val() == "auto") ? "auto" : parseInt($('.title-length').next().find('input').val(),10);
+	_config.showThumb     = ($('.show-thumbnail').is(':checked')) ? true : false;
+	_config.thumbWidth    = ($('.thumb-width').val() == "") ? 250 : parseInt($('.thumb-width').val(),10);
+	_config.squareThumb   = ($('.square-thumbnail').val() == "0") ? false : true;
+	_config.noThumb       = ($('.no-thumb').val() == "") ? "http://3.bp.blogspot.com/-vpCFysMEZys/UOEhSGjkfnI/AAAAAAAAFwY/h1wuA5kfEhg/s72-c/grey.png" : $('.no-thumb').val();
+	_config.showNav       = ($('.show-nav').val() == "0") ? false : ($('.show-nav').val() == "2") ? "next/prev" : ($('.show-nav').val() == "3") ? "number" : true;
+	_config.navText       = {};
+	_config.navText.prev  = ($('.nav-text-prev').val() == "") ? "&lt;" : $('.nav-text-prev').val();
+	_config.navText.next  = ($('.nav-text-next').val() == "") ? "&gt;" : $('.nav-text-next').val();
+	_config.containerId   = ($('.container-id').val() == "") ? "slider-rotator" : $('.container-id').val();
+	_config.autoSlide     = ($('.slideshow-auto-slide').val() == "0") ? false : true;
+	_config.interval      = ($('.slideshow-interval').val() == "") ? 6000 : parseInt($('.slideshow-interval').val(),10);
+	_config.speed         = ($('.slideshow-speed').val() == "") ? 1000 : parseInt($('.slideshow-speed').val(),10);
+	_config.hoverPause    = ($('.slideshow-hover-pause').val() == "0") ? false : true;
+	_config.crossFade     = ($('.slideshow-change').val() == "0") ? false : true;
+	_config.autoHeight    = ($('.slideshow-auto-height').val() == "0") ? false : true;
+	console.log(_config);
+}
+
+function generateCode() {
+	raw = '<code class="xml"><span class="comment">&lt;!-- It would be better if you put this stylesheet inside the `&lt;head&gt;` area, before the scripts. --&gt;</span>\n<span class="tag">&lt;<span class="title">link</span> rel=<span class="value">"stylesheet"</span> type=<span class="value">"text/css"</span> href=<span class="value">"http://blogger-json-experiment.googlecode.com/svn/resources/blogger-feed-rotator-plugin/default-style.min.css"</span>/&gt;</span>\n' +
+	'<span class="tag">&lt;<span class="title">style</span> type=<span class="value">"text/css"</span>&gt;</span>\n' +
+	'<span class="comment">/* Custom CSS here... */</span>' +
+	($('.custom-css').val() == "" ? "" : "\n" + $('.custom-css').val()) + 
+	'\n<span class="tag">&lt;/<span class="title">style</span>&gt;</span>\n\n' +
+	'<span class="tag">&lt;<span class="title">div</span> id=<span class="value">"' + _config.containerId + '"</span> class=<span class="value">"slider-rotator loading"</span>&gt;&lt;/<span class="title">div</span>&gt;</span>\n' +
+	(($('.jq-library').val() == "0") ? '<span class="comment">\n&lt;!--\nRemember: Load the JQuery library once\nConsider to move this library and place it above the `&lt;/head&gt;` code\n--&gt;</span>\n<span class="tag code-block">&lt;<span class="title">script</span> type=<span class="value">"text/javascript"</span> src=<span class="value">"http://ajax.googleapis.com/ajax/libs/jquery/' + $('.jq-library').next().find('input').val() + '/jquery.min.js"</span>&gt;&lt;/<span class="title">script</span>&gt;</span>\n' : '') +
+	'<span class="tag">&lt;<span class="title">script</span> type=<span class="value">"text/javascript"</span> src=<span class="value">"http://blogger-json-experiment.googlecode.com/svn/resources/blogger-feed-rotator-plugin/blogger-feed-rotator.min.js"</span>&gt;&lt;/<span class="title">script</span>&gt;</span>\n' +
+	'<span class="tag">&lt;<span class="title">script</span> type=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">\n' +
+	'makeSlider({\n' +
+    '    url: <span class="string">"' + _config.url + '"</span>, <span class="comment">// Your blog URL</span>\n' +
+    '    numPost: <span class="number">' + _config.numPost + '</span>, <span class="comment">// Number of posts to display</span>\n' +
+    '    newTabLink: <span class="literal">' + _config.newTabLink + '</span>, <span class="comment">// `true` to automatically open link in new window tab</span>\n' +
+    '    labelName: <span class="string">"' + _config.labelName + '"</span>, <span class="comment">// Show posts in specific label. Specify name of the post label, or `null` to show all posts</span>\n' +
+    '    showDetail: <span class="literal">' + _config.showDetail + '</span>, <span class="comment">// `false` to hide the blog post title &amp; description</span>\n' +
+    '    summaryLength: <span class="number">' + _config.summaryLength + '</span>, <span class="comment">// Length of post summary</span>\n' +
+    '    titleLength: <span class="number">' + _config.titleLength + '</span>, <span class="comment">// Length of the post title. "auto" by default, or specify number to crop the post title characters and truncate it with `...`</span>\n' +
+    '    showThumb: <span class="literal">' + _config.showThumb + '</span>, <span class="comment">// `false` to hide the post thumbnails</span>\n' +
+    '    thumbWidth: <span class="number">' + _config.thumbWidth + '</span>, <span class="comment">// Width of post thumbnail in pixels</span>\n' +
+    '    squareThumb: <span class="literal">' + _config.squareThumb + '</span>, <span class="comment">// Thumbnail mode: Square mode or use the scaled thumbnail with original width and height ratio</span>\n' +
+    '    noThumb: <span class="string">"' + _config.noThumb + '"</span>, <span class="comment">// Fallback thumbnail for no picture posts</span>\n' +
+    '    showNav: <span class="literal">' + _config.showNav + '</span>, <span class="comment">// `true` to show both pext/prev navigation and navigation number, "next/prev" to show next/prev navigation only, "number" to show navigation number only, `false` to hide the navigation</span>\n' +
+    '    navText: {\n' +
+	'        prev: <span class="string">"' + _config.navText.prev.replace(/&lt;/,"&amp;lt;").replace(/&gt;/,"&amp;gt;") + '"</span>, <span class="comment">// Label of the previous navigation</span>\n' +
+	'        next: <span class="string">"' + _config.navText.next.replace(/&lt;/,"&amp;lt;").replace(/&gt;/,"&amp;gt;") + '"</span> <span class="comment">// Label of the next navigation</span>\n' +
+	'    },\n' +
+    '    containerId: <span class="string">"' + _config.containerId + '"</span>, <span class="comment">// HTML element ID that is used to display the slideshow/rotator</span>\n' +
+    '    autoSlide: <span class="number">' + _config.autoSlide + '</span>, <span class="comment">// `false` to run the slideshow/rotator manually (with navigation)</span>\n' +
+    '    interval: <span class="number">' + _config.interval + '</span>, <span class="comment">// Slideshow interval</span>\n' +
+    '    speed: <span class="number">' + _config.speed + '</span>, <span class="comment">// Slideshow animation speed</span>\n' +
+    '    hoverPause: <span class="literal">' + _config.hoverPause + '</span>, <span class="comment">// `false` to make the slideshow/rotator keep running on mouse-over</span>\n' +
+    '    crossFade: <span class="literal">' + _config.crossFade + '</span>, <span class="comment">// `true` if you want to make the slide change effect occurs simultaneously between disappearance and appearance</span>\n' +
+    '    autoHeight: <span class="literal">' + _config.autoHeight + '</span> <span class="comment">// Animate the rotator to adjust the height of the displayed item</span>\n' +
+    '});\n' +
+	'</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></code>';	
+	raw = raw.replace(/<span(.*?)>\"null\"<\/span>\,/ig,"<span class=\"literal\">null<\/span>\,").replace(/\: <span(.*?)>(auto|onload|next\/prev|number)<\/span>\,/g,": <span class=\"string\">\"$2\"<\/span>,");
+}
+
+$previewBtn.on("click", function() {
+	updateConfig();
+	$container.html('<div id="' + _config.containerId + '" class="slider-rotator loading"></div>');
+	makeSlider(_config);
+	generateCode();
+	$result.show().html(raw);
+	$customCSS.html($('.custom-css').val());
+});
+$('.jq-library').on("change", function() {
+	$(this).next()[$(this).val() == "0" ? "show" : "hide"]().find('input').val($(this).val() == "0" ? "1.9.1" : "-").prop("disabled", $(this).val() == "0" ? false : true);
+});
+$('.title-length').on("change", function() {
+	$(this).next()[$(this).val() == "0" ? "hide" : "show"]().find('input').val($(this).val() == "0" ? "auto" : "30").prop("disabled", $(this).val() == "0" ? true : false);
+});
+$('.remove-comment').prop('disabled', false).on("change", function() {
+	generateCode();
+	var nocomment = raw.replace(/<span class=\"comment\">([\w\W]+?)<\/span>\n/,"").replace(/( |\n)+<span class=\"comment\">([\w\W]+?)<\/span>/g,"").replace(/text\/css\"<\/span>&gt;<\/span>\n\n<span/,"text\/css\"<\/span>&gt;<\/span><span").replace(/\n<span(.*?)>&lt;\/<span(.*?)>style<\/span>&gt;<\/span>\n/,"<span$1>&lt;\/<span$2>style<\/span>&gt;<\/span>").replace(/\}<span(.*?)>&lt;\/<span(.*?)>style/,"}\n<span$1>&lt;\/<span$2>style");
+	$result.html($(this).is(':checked') ? nocomment : raw);
+});
+$('.right-col h3:first a').on("click", function() {
+	$('.right-col .panel').toggle();
+	return false;
+});
+
+// Initiation...
+$(window).on("scroll", function() {
+	$(document.body)[($(this).scrollTop() >= $('.col-group').offset().top) ? "addClass" : "removeClass"]('fixed-preview');
+}).on("load", function() {
+	$previewBtn.trigger("click");
+});
+
+</script>
+
+</body>
+</html>

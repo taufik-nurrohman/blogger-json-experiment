@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Demo 8: Example Callback Functions</title>
+<link rel="shortcut icon" href="http://mini-web-tools.googlecode.com/svn/p/img/favicon.ico">
+<link rel="stylesheet" type="text/css" href="demo.css">
+<link rel="stylesheet" type="text/css" href="default-style.css">
+<style type="text/css">
+/* Custom CSS here... */
+.slider-rotator {
+  width:600px;
+  height:240px;
+  padding:0 0;
+  background-color:white;
+  font:italic normal 12px/1.4 Georgia,Serif;
+  color:white;
+  border:1px solid black;
+}
+
+.slider-rotator .slider-item {
+  background-color:white;
+  height:240px; /* Same with `.slider-rotator` height */
+  padding:0 0;
+}
+
+.slider-rotator h4 {margin-top:0}
+.slider-rotator p {margin:2px 0 0}
+
+/* Slider details as caption */
+.slider-rotator .detail-wrapper {
+  position:absolute;
+  top:auto;
+  right:0;
+  bottom:0;
+  left:0;
+  background-color:black;
+  background-color:rgba(0,0,0,.9);
+  padding:.5em 1em;
+  z-index:4;
+}
+</style>
+</head>
+<body>
+
+<p><a href="setup-widget.html">Back to Widget Configurator</a> | <a href="http://www.dte.web.id">Author Homepage</a></p>
+<h1>Demo 8: Example Callback Function</h1><p>Example callback function to animate the slideshow caption</p>
+
+<div id="slider-rotator" class="slider-rotator loading"></div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="blogger-feed-rotator.js"></script>
+<script type="text/javascript">
+makeSlider({
+	thumbWidth: 600,
+	onInit: function() {
+		$('#' + this.containerId).find('.detail-wrapper').hide();
+	},
+	onHide: function() {
+		$('#' + this.containerId).find('.detail-wrapper').slideUp();
+	},
+	onShow: function(index) {
+		$('#' + this.containerId).children().eq(index).find('.detail-wrapper').slideDown();
+	}
+});
+</script>
+
+<strong class="code-snippet-title">Code snippet:</strong>
+<pre><code class="xml"><span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">type</span>=<span class="value">"text/css"</span> <span class="attribute">href</span>=<span class="value">"http://blogger-json-experiment.googlecode.com/svn/resources/blogger-feed-rotator-plugin/default-style.min.css"</span>/&gt;</span>
+<span class="tag">&lt;<span class="title">style</span> <span class="attribute">type</span>=<span class="value">"text/css"</span>&gt;</span><span class="css">
+<span class="comment">/* Custom CSS here... */</span>
+<span class="class">.slider-rotator</span> <span class="rules">{
+  <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">600</span>px</span>;</span>
+  <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">240</span>px</span>;</span>
+  <span class="rule"><span class="attribute">padding</span>:<span class="value"><span class="number">0</span> <span class="number">0</span></span>;</span>
+  <span class="rule"><span class="attribute">background-color</span>:<span class="value">white</span>;</span>
+  <span class="rule"><span class="attribute">font</span>:<span class="value">italic normal <span class="number">12</span>px/<span class="number">1.4</span> Georgia,Serif</span>;</span>
+  <span class="rule"><span class="attribute">color</span>:<span class="value">white</span>;</span>
+  <span class="rule"><span class="attribute">border</span>:<span class="value"><span class="number">1</span>px solid black</span>;</span>
+<span class="rule">}</span></span>
+
+<span class="class">.slider-rotator</span> <span class="class">.slider-item</span> <span class="rules">{
+  <span class="rule"><span class="attribute">background-color</span>:<span class="value">white</span>;</span>
+  <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">240</span>px</span>;</span> <span class="comment">/* Same with `.slider-rotator` height */</span>
+  <span class="rule"><span class="attribute">padding</span>:<span class="value"><span class="number">0</span> <span class="number">0</span></span>;</span>
+<span class="rule">}</span></span>
+
+<span class="class">.slider-rotator</span> <span class="tag">h4</span> <span class="rules">{<span class="rule"><span class="attribute">margin-top</span>:<span class="value"><span class="number">0</span></span>}</span></span>
+<span class="class">.slider-rotator</span> <span class="tag">p</span> <span class="rules">{<span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">2</span>px <span class="number">0</span> <span class="number">0</span></span>}</span></span>
+
+<span class="comment">/* Slider details as caption */</span>
+<span class="class">.slider-rotator</span> <span class="class">.detail-wrapper</span> <span class="rules">{
+  <span class="rule"><span class="attribute">position</span>:<span class="value">absolute</span>;</span>
+  <span class="rule"><span class="attribute">top</span>:<span class="value">auto</span>;</span>
+  <span class="rule"><span class="attribute">right</span>:<span class="value"><span class="number">0</span></span>;</span>
+  <span class="rule"><span class="attribute">bottom</span>:<span class="value"><span class="number">0</span></span>;</span>
+  <span class="rule"><span class="attribute">left</span>:<span class="value"><span class="number">0</span></span>;</span>
+  <span class="rule"><span class="attribute">background-color</span>:<span class="value">black</span>;</span>
+  <span class="rule"><span class="attribute">background-color</span>:<span class="value"><span class="function">rgba(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,.<span class="number">9</span>)</span></span>;</span>
+  <span class="rule"><span class="attribute">padding</span>:<span class="value">.<span class="number">5</span>em <span class="number">1</span>em</span>;</span>
+  <span class="rule"><span class="attribute">z-index</span>:<span class="value"><span class="number">4</span></span>;</span>
+<span class="rule">}</span></span>
+</span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></code></pre>
+<pre><code class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"slider-rotator"</span> <span class="attribute">class</span>=<span class="value">"slider-rotator loading"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"http://blogger-json-experiment.googlecode.com/svn/resources/blogger-feed-rotator-plugin/blogger-feed-rotator.min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">
+makeSlider({
+    url: <span class="string">"http://nama_blog.blogspot.com"</span>,
+    thumbWidth: <span class="number">600</span>,
+    <span class="comment">// Hide all captions on initiation...</span>
+    onInit: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        $(<span class="string">'#'</span> + <span class="keyword">this</span>.containerId).find(<span class="string">'.detail-wrapper'</span>).hide();
+    },
+    <span class="comment">// Hide the caption with `.slideUp()` effect when the slide item hides</span>
+    onHide: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        $(<span class="string">'#'</span> + <span class="keyword">this</span>.containerId).find(<span class="string">'.detail-wrapper'</span>).slideUp();
+    },
+    <span class="comment">// Show the caption with `.slideDown()` effect when the slide item appears</span>
+    onShow: <span class="function"><span class="keyword">function</span><span class="params">(index)</span> {</span>
+        $(<span class="string">'#'</span> + <span class="keyword">this</span>.containerId).children().eq(index).find(<span class="string">'.detail-wrapper'</span>).slideDown();
+    }
+});
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></code></pre>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}body{font:normal normal .8125em/1.4 Arial,Sans-Serif;background-color:white;color:#333}strong,b{font-weight:bold}cite,em,i{font-style:italic}a{text-decoration:none}a:hover{text-decoration:underline}a img{border:none}abbr,acronym{border-bottom:1px dotted;cursor:help}sup,sub{vertical-align:baseline;position:relative;top:-.4em;font-size:86%}sub{top:.4em}small{font-size:86%}kbd{font-size:80%;border:1px solid #999;padding:2px 5px;border-bottom-width:2px;border-radius:3px}mark{background-color:#ffce00;color:black}p,blockquote,pre,table,figure,hr,form,ol,ul,dl{margin:1.5em 0}hr{height:1px;border:none;background-color:#666}h1,h2,h3,h4,h5,h6{font-weight:bold;line-height:normal;margin:1.5em 0 0}h1{font-size:200%}h2{font-size:180%}h3{font-size:160%}h4{font-size:140%}h5{font-size:120%}h6{font-size:100%}ol,ul,dl{margin-left:3em}ol{list-style:decimal outside}ul{list-style:disc outside}li{margin:.5em 0}dt{font-weight:bold}dd{margin:0 0 .5em 2em}input,button,select,textarea{font:inherit;font-size:100%;line-height:normal;vertical-align:baseline}textarea{display:block;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}pre,code{font-family:"Courier New",Courier,Monospace;color:inherit}pre{white-space:pre;word-wrap:normal;overflow:auto}blockquote{margin-left:2em;margin-right:2em;border-left:4px solid #ccc;padding-left:1em;font-style:italic}table[border="1"] th,table[border="1"] td,table[border="1"] caption{border:1px solid;padding:.5em 1em;text-align:left;vertical-align:top}th{font-weight:bold}table[border="1"] caption{border:none;font-style:italic}
+
+html {overflow-y:scroll}
+
+body {
+  background-color:#eee;
+  padding:50px 0;
+  text-align:center;
+  font:normal normal 11px/1.4 Tahoma,Verdana,Arial,Sans-Serif;
+  color:black;
+}
+
+a,a:hover {color:blue}
+a:visited {color:purple}
+
+h1 {
+  margin:0 0 15px;
+  font-size:300%;
+  font-weight:bold;
+  letter-spacing:-1px;
+}
+
+p {margin:0 0 15px}
+
+pre{display:block;padding:.5em .8em;background-color:#111;color:#f8f8f8}pre .shebang,pre .comment,pre .template_comment,pre .javadoc{color:#7c7c7c}pre .keyword,pre .tag,pre .ruby .function .keyword,pre .tex .command{color:#96CBFE}pre .function .keyword,pre .sub .keyword,pre .method,pre .list .title{color:#FFFFB6}pre .string,pre .tag .value,pre .cdata,pre .filter .argument,pre .attr_selector,pre .apache .cbracket,pre .date{color:#A8FF60}pre .subst{color:#DAEFA3}pre .regexp{color:#E9C062}pre .function .title,pre .sub .identifier,pre .pi,pre .decorator,pre .ini .title,pre .tex .special{color:#FFFFB6}pre .class .title,pre .haskell .label,pre .constant,pre .smalltalk .class,pre .javadoctag,pre .yardoctag,pre .phpdoc,pre .nginx .built_in{color:#FFFFB6}pre .symbol,pre .ruby .symbol .string,pre .ruby .symbol .keyword,pre .ruby .symbol .keymethods,pre .number,pre .variable,pre .vbscript,pre .literal{color:#C6C5FE}pre .css .tag{color:#96CBFE}pre .css .rules .property,pre .css .id{color:#FFFFB6}pre .css .class{color:#FFF}pre .hexcolor{color:#C6C5FE}pre .number{color:#FF73FD}pre .tex .formula{opacity:0.7}
+
+pre {
+  margin:1em 50px;
+  text-align:left;
+  white-space:pre;
+  word-wrap:normal;
+  overflow:auto;
+}
+
+pre code {
+  display:block;
+  font-family:"Courier New",Courier,Monospace;
+  font-size:12px;
+  color:inherit;
+}
+
+.setup-widget-page pre {
+  margin-left:0;
+  margin-right:0;
+  height:340px;
+}
+
+.setup-widget-page h3 {margin-bottom:1.5em}
+
+.code-snippet-title {
+  display:block;
+  text-align:left;
+  margin:30px 50px 0;
+}

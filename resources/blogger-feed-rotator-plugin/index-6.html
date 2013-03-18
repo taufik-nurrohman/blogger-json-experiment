@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Demo 6: Multiple Feed</title>
+<link rel="shortcut icon" href="http://mini-web-tools.googlecode.com/svn/p/img/favicon.ico">
+<link rel="stylesheet" type="text/css" href="demo.css">
+<link rel="stylesheet" type="text/css" href="default-style.css">
+<style type="text/css">
+.slider-rotator-wrapper {
+  width:630px;
+  padding:10px 5px;
+  border:1px solid #ccc;
+  background-color:white;
+  margin:0 auto;
+}
+.slider-rotator-wrapper .grid {
+  float:left;
+  margin:0 5px;
+}
+.slider-rotator {
+  padding:0 0;
+  border:none;
+  width:200px;
+  height:320px;
+}
+.slider-rotator .slider-item {padding:0 0}
+.slider-rotator-nav {
+  overflow:hidden;
+  margin-top:10px;
+  border:1px solid #999;
+  background-color:#ccc;
+  padding:2px 0;
+}
+.slider-rotator-nav a {
+  margin:0 0;
+  display:inline-block;
+  line-height:normal;
+}
+.clear {clear:both}
+</style>
+</head>
+<body>
+
+<p><a href="setup-widget.html">Back to Widget Configurator</a> | <a href="http://www.dte.web.id">Author Homepage</a></p>
+<h1>Demo 6: Multiple Feed Rotator</h1><p>Call multiple JSON feeds to make multiple feed rotator</p>
+
+<div id="slider-rotator-wrapper" class="slider-rotator-wrapper">
+	<div class="grid">
+		<div id="slider-rotator-1" class="slider-rotator loading"></div>
+	</div>
+	<div class="grid">
+		<div id="slider-rotator-2" class="slider-rotator loading"></div>
+	</div>
+	<div class="grid">
+		<div id="slider-rotator-3" class="slider-rotator loading"></div>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="blogger-feed-rotator.js"></script>
+<script type="text/javascript">
+makeSlider({
+	labelName: "Dasar",
+	thumbWidth: 200,
+	interval: 10000,
+	containerId: "slider-rotator-1"
+});
+makeSlider({
+	labelName: "Menengah",
+	thumbWidth: 200,
+	interval: 10000,
+	containerId: "slider-rotator-2"
+});
+makeSlider({
+	labelName: "Tingkat Lanjut",
+	thumbWidth: 200,
+	interval: 10000,
+	containerId: "slider-rotator-3"
+});
+</script>
+
+<strong class="code-snippet-title">Code snippet:</strong>
+<pre><code class="xml"><span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">type</span>=<span class="value">"text/css"</span> <span class="attribute">href</span>=<span class="value">"http://blogger-json-experiment.googlecode.com/svn/resources/blogger-feed-rotator-plugin/default-style.min.css"</span>/&gt;</span>
+<span class="tag">&lt;<span class="title">style</span> <span class="attribute">type</span>=<span class="value">"text/css"</span>&gt;</span><span class="css">
+<span class="comment">/* Custom CSS here... */</span>
+<span class="class">.slider-rotator-wrapper</span> <span class="rules">{
+  <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">630</span>px</span>;</span>
+  <span class="rule"><span class="attribute">padding</span>:<span class="value"><span class="number">10</span>px <span class="number">5</span>px</span>;</span>
+  <span class="rule"><span class="attribute">border</span>:<span class="value"><span class="number">1</span>px solid <span class="hexcolor">#ccc</span></span>;</span>
+  <span class="rule"><span class="attribute">background-color</span>:<span class="value">white</span>;</span>
+  <span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">0</span> auto</span>;</span>
+<span class="rule">}</span></span>
+<span class="class">.slider-rotator-wrapper</span> <span class="class">.grid</span> <span class="rules">{
+  <span class="rule"><span class="attribute">float</span>:<span class="value">left</span>;</span>
+  <span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">0</span> <span class="number">5</span>px</span>;</span>
+<span class="rule">}</span></span>
+<span class="class">.slider-rotator</span> <span class="rules">{
+  <span class="rule"><span class="attribute">padding</span>:<span class="value"><span class="number">0</span> <span class="number">0</span></span>;</span>
+  <span class="rule"><span class="attribute">border</span>:<span class="value">none</span>;</span>
+  <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">200</span>px</span>;</span>
+  <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">320</span>px</span>;</span>
+<span class="rule">}</span></span>
+<span class="class">.slider-rotator</span> <span class="class">.slider-item</span> <span class="rules">{<span class="rule"><span class="attribute">padding</span>:<span class="value"><span class="number">0</span> <span class="number">0</span></span>}</span></span>
+<span class="class">.slider-rotator-nav</span> <span class="rules">{
+  <span class="rule"><span class="attribute">overflow</span>:<span class="value">hidden</span>;</span>
+  <span class="rule"><span class="attribute">margin-top</span>:<span class="value"><span class="number">10</span>px</span>;</span>
+  <span class="rule"><span class="attribute">border</span>:<span class="value"><span class="number">1</span>px solid <span class="number">#999</span></span>;</span>
+  <span class="rule"><span class="attribute">background-color</span>:<span class="value"><span class="hexcolor">#ccc</span></span>;</span>
+  <span class="rule"><span class="attribute">padding</span>:<span class="value"><span class="number">2</span>px <span class="number">0</span></span>;</span>
+<span class="rule">}</span></span>
+<span class="class">.slider-rotator-nav</span> <span class="tag">a</span> <span class="rules">{
+  <span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">0</span> <span class="number">0</span></span>;</span>
+  <span class="rule"><span class="attribute">display</span>:<span class="value">inline-block</span>;</span>
+  <span class="rule"><span class="attribute">line-height</span>:<span class="value">normal</span>;</span>
+<span class="rule">}</span></span>
+<span class="class">.clear</span> <span class="rules">{<span class="rule"><span class="attribute">clear</span>:<span class="value">both</span>}</span></span>
+</span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></code></pre>
+<pre><code class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"slider-rotator-wrapper"</span> <span class="attribute">class</span>=<span class="value">"slider-rotator-wrapper"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"grid"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"slider-rotator-1"</span> <span class="attribute">class</span>=<span class="value">"slider-rotator loading"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"grid"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"slider-rotator-2"</span> <span class="attribute">class</span>=<span class="value">"slider-rotator loading"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"grid"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"slider-rotator-3"</span> <span class="attribute">class</span>=<span class="value">"slider-rotator loading"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"clear"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"http://blogger-json-experiment.googlecode.com/svn/resources/blogger-feed-rotator-plugin/blogger-feed-rotator.min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">
+makeSlider({
+    url: <span class="string">'http://nama_blog-1.blogspot.com'</span>,
+    labelName: <span class="string">"JQuery"</span>,
+    thumbWidth: <span class="number">200</span>,
+    interval: <span class="number">10000</span>,
+    containerId: <span class="string">"slider-rotator-1"</span>
+});
+makeSlider({
+    url: <span class="string">'http://nama_blog-2.blogspot.com'</span>,
+    labelName: <span class="string">"CSS"</span>,
+    thumbWidth: <span class="number">200</span>,
+    interval: <span class="number">10000</span>,
+    containerId: <span class="string">"slider-rotator-2"</span>
+});
+makeSlider({
+    url: <span class="string">'http://nama_blog-3.blogspot.com'</span>,
+    labelName: <span class="string">"Mengenai"</span>,
+    thumbWidth: <span class="number">200</span>,
+    interval: <span class="number">10000</span>,
+    containerId: <span class="string">"slider-rotator-3"</span>
+});
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></code></pre>
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+/* Basic style for Blogger Feed Rotator plugin */
+
+/*
+ # Generated HTML markup:
+ --------------------------------------------------------
+ <div id="slider-rotator" class="slider-rotator loading">
+     <div class="slider-item">
+         <div class="image-wrapper">
+            <img alt="Post Title 1" src="thumbnail.jpg" style="width:250px;height:250px;">
+         </div>
+         <div class="detail-wrapper">
+            <h4><a href="" title="Post Title 1">Post Title 1</a></h4>
+            <p>Lorem ipsum dolor sit amet...</p>
+         </div>
+     </div>
+     <div class="slider-item">
+         <div class="image-wrapper">
+            <img alt="Post Title 2" src="thumbnail.jpg" style="width:250px;height:250px;">
+         </div>
+         <div class="detail-wrapper">
+            <h4><a href="" title="Post Title 2">Post Title 2</a></h4>
+            <p>Lorem ipsum dolor sit amet...</p>
+         </div>
+     </div>
+     ...
+ </div>
+ <div class="slider-rotator-nav">
+     <span class="rotator-advancer">
+         <a href="#prev">&lt;</a>
+     </span>
+     <span class="rotator-num">
+         <a href="#slide-0">1</a>
+         <a href="#slide-1">2</a>
+         ...
+     </span>
+     <span class="rotator-advancer">
+         <a href="#next">&gt;</a>
+     </span>
+ </div>
+ --------------------------------------------------------
+*/
+
+.slider-rotator {
+  width:250px;
+  height:340px;
+  border:1px solid #ccc;
+  background-color:white;
+  padding:10px;
+  font:normal normal 11px/1.4 Tahoma,Verdana,Arial,Sans-Serif;
+  color:#333;
+  margin:0 auto;
+  position:relative;
+  overflow:hidden;
+  text-align:left;
+}
+
+.slider-rotator.loading {
+  background-image:url('data:image/gif;base64,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');
+  background-position:50% 50%;
+  background-repeat:no-repeat;
+}
+
+.slider-rotator .slider-item {
+  position:absolute;
+  padding:10px; /* same with `.slider-rotator` padding size */
+  background-color:white;
+  top:0;
+  right:0;
+  bottom:auto;
+  left:0;
+  display:none;
+}
+
+.slider-rotator .image-wrapper {}
+.slider-rotator .detail-wrapper {}
+
+.slider-rotator img {
+  display:block;
+  border:none;
+  outline:none;
+  padding:0 0;
+  margin:0 0;
+  -webkit-box-shadow:none;
+  -moz-box-shadow:none;
+  box-shadow:none;
+  max-width:none;
+  max-height:none;
+}
+
+.slider-rotator h4 {
+  font:inherit;
+  font-weight:bold;
+  font-size:120%;
+  text-transform:none;
+  color:#3B4B7E;
+  margin:10px 0 0;
+}
+
+.slider-rotator h4 a {
+  color:inherit;
+  text-decoration:none;
+}
+
+.slider-rotator h4 a:hover {
+  color:#793B7E;
+  text-decoration:underline;
+}
+
+.slider-rotator p {margin:10px 0 0}
+
+.slider-rotator-nav {text-align:center}
+
+.slider-rotator-nav a {
+  display:inline;
+  background-color:#333;
+  color:white;
+  padding:4px 8px;
+  line-height:2.6em;
+  margin:0 2px;
+  text-decoration:none;
+}
+
+.slider-rotator-nav a:hover {background-color:#111}
+.slider-rotator-nav a.current {background-color:#3B4B7E}

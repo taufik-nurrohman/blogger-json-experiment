@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Demo 2: Show Posts under Category &#8220;Widget&#8221;</title>
+<link rel="shortcut icon" href="http://mini-web-tools.googlecode.com/svn/p/img/favicon.ico">
+<link rel="stylesheet" type="text/css" href="demo.css">
+<link rel="stylesheet" type="text/css" href="default-style.css">
+</head>
+<body>
+
+<p><a href="setup-widget.html">Back to Widget Configurator</a> | <a href="http://www.dte.web.id">Author Homepage</a></p>
+<h1>Demo 2: Show Posts under Category &#8220;Widget&#8221;</h1><p>Show list of posts under category &#8220;Widget&#8221;</p>
+
+<div id="slider-rotator" class="slider-rotator loading"></div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="blogger-feed-rotator.js"></script>
+<script type="text/javascript">
+makeSlider({
+	labelName: "Widget"
+});
+</script>
+
+<strong class="code-snippet-title">Code snippet:</strong>
+<pre><code class="xml"><span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">type</span>=<span class="value">"text/css"</span> <span class="attribute">href</span>=<span class="value">"http://blogger-json-experiment.googlecode.com/svn/resources/blogger-feed-rotator-plugin/default-style.min.css"</span>/&gt;</span>
+<span class="tag">&lt;<span class="title">style</span> <span class="attribute">type</span>=<span class="value">"text/css"</span>&gt;</span><span class="css">
+<span class="comment">/* Custom CSS here... */</span>
+<span class="class">.slider-rotator</span> <span class="rules">{
+  <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">250</span>px</span>;</span>
+  <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">340</span>px</span>;</span>
+<span class="rule">}</span></span>
+</span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></code></pre>
+<pre><code class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"slider-rotator"</span> <span class="attribute">class</span>=<span class="value">"slider-rotator loading"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"http://blogger-json-experiment.googlecode.com/svn/resources/blogger-feed-rotator-plugin/blogger-feed-rotator.min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">
+makeSlider({
+    url: <span class="string">"http://nama_blog.blogspot.com"</span>, <span class="comment">// Your blog URL</span>
+    labelName: <span class="string">"Widget"</span> <span class="comment">// Show posts under category `Widget`</span>
+});
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></code></pre>
+
+</body>
+</html>

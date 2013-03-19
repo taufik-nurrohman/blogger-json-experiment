@@ -172,7 +172,7 @@
 function makeSlider(config) {
 
 	var defaults = {
-		url: 'http://www.dte.web.id', // Your blog URL
+		url: "http://www.dte.web.id", // Your blog URL
 		numPost: 5, // Number of posts to display
 		newTabLink: false, // `true` to automatically open link in new window tab
 		labelName: null, // Show posts in specific label. Specify name of the post label, or `null` to show all posts
@@ -183,7 +183,7 @@ function makeSlider(config) {
 		thumbWidth: 250, // Width of post thumbnail in pixels
 		squareThumb: true, // Thumbnail mode: Square mode or use the scaled thumbnail with original width and height ratio
 		noThumb: "http://3.bp.blogspot.com/-vpCFysMEZys/UOEhSGjkfnI/AAAAAAAAFwY/h1wuA5kfEhg/s72-c/grey.png", // Fallback thumbnail for no picture posts
-		showNav: true, // `true` to show both pext/prev navigation and navigation number, "next/prev" to show next/prev navigation only, "number" to show navigation number only, `false` to hide the navigation
+		showNav: true, // `true` to show both next/prev navigation and navigation number, "next/prev" to show next/prev navigation only, "number" to show navigation number only, `false` to hide the navigation
 		navText: {
 			prev: "&lt;", // Label of the previous navigation
 			next: "&gt;" // Label of the next navigation
@@ -210,7 +210,7 @@ function makeSlider(config) {
 			for (var i = 0, len = entry.length; i < len; i++) {
 				if (i == entry.length) break;
 				title = entry[i].title.$t;
-				thumb = ("media$thumbnail" in entry[i]) ? '<img alt="' + title + '" src="' + entry[i].media$thumbnail.url.replace(/\/s72\-c/, '/s' + defaults.thumbWidth + (defaults.squareThumb ? '-c' : '')) + '" style="width:' + defaults.thumbWidth + 'px;height:' + (defaults.squareThumb ? defaults.thumbWidth + 'px' : 'auto') + '">' : '<img src="' + defaults.noThumb + '" style="width:' + defaults.thumbWidth + 'px;height:' + (defaults.squareThumb ? defaults.thumbWidth + "px" : "auto") + '">';
+				thumb = ("media$thumbnail" in entry[i]) ? '<img alt="' + title + '" src="' + entry[i].media$thumbnail.url.replace(/\/s72\-c/, '/s' + defaults.thumbWidth + (defaults.squareThumb ? '-c' : '')) + '" style="width:' + defaults.thumbWidth + 'px;height:' + (defaults.squareThumb ? defaults.thumbWidth + 'px' : 'auto') + '">' : '<img src="' + defaults.noThumb + '" style="width:' + defaults.thumbWidth + 'px;height:' + (defaults.squareThumb ? defaults.thumbWidth + 'px' : 'auto') + '">';
 				summary = ("summary" in entry[i] && defaults.summaryLength > 0) ? entry[i].summary.$t.replace(/<br ?\/?>/ig," ").replace(/<(.*?)>/g,"") : "";
 				summary = (defaults.summaryLength < summary.length) ? summary.substring(0, defaults.summaryLength) + '&hellip;' : summary;
 

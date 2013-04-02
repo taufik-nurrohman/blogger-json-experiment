@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+<style type="text/css">
+
+* {
+  margin:0;
+  padding:0;
+}
+
+body {
+  font:normal normal 11px/1.5 Tahoma,Verdana,Arial,Sans-Serif;
+  color:black;
+  background-color:white;
+  padding:50px;
+}
+
+h1 {
+  font-weight:bold;
+  font-size:300%;
+  margin:0 0 .5em;
+}
+
+</style>
+<link rel="stylesheet" type="text/css" href="multi-feed.css">
+<style type="text/css">
+/* Custom CSS */
+.list-entries {
+  margin:5px;
+  padding:0;
+  width:270px;
+  float:left;
+}
+</style>
+</head>
+<body>
+
+<h1>Demo for Multi Blogger Feeds Loader</h1>
+
+<div id="feed-list-container"></div>
+<div style="clear:both;"></div>
+
+
+<script type="text/javascript">
+
+var multiFeed = {
+	feedsUri: [
+		{
+			name: "Posting JQuery",
+			url: "http://www.dte.web.id",
+			tag: "JQuery"
+		},
+		{
+			name: "Posting CSS",
+			url: "http://www.dte.web.id",
+			tag: "CSS"
+		},
+		{
+			name: "Widget-Widget Blogger",
+			url: "http://www.dte.web.id",
+			tag: "Widget"
+		}
+	],
+	numPost: 4,
+	showThumbnail: true,
+	showSummary: true,
+	summaryLength: 80,
+	titleLength: "auto",
+	thumbSize: 72,
+	containerId: "feed-list-container",
+	readMore: {
+		text: "Selengkapnya",
+		endParam: "?max-results=20"
+	}
+};
+
+</script>
+<script type="text/javascript" src="multi-feed.js"></script>
+
+<div style="margin-top:1em;text-align:right;"><a href="http://www.dte.web.id">DTE :]</a></div>
+
+</body>
+</html>

@@ -25,6 +25,7 @@ var multiFeed_defaults = {
 	summaryLength: 80,
 	titleLength: "auto",
 	thumbSize: 72,
+	newTabLink: false,
 	containerId: "feed-list-container",
 	listClass: "list-entries",
 	readMore: {
@@ -32,7 +33,7 @@ var multiFeed_defaults = {
 		endParam: "?max-results=20"
 	},
 	autoHeight: false,
-	current: -1,
+	current: 0,
 	onLoadFeed: function(i) {
 		// console.log(this.feedsUri[i].name);
 	},
@@ -50,12 +51,9 @@ function listEntries(json) {
 	var entry = json.feed.entry,
 		o = multiFeed_defaults,
 		ct = document.getElementById(o.containerId),
-		el = document.createElement('div'),
 		skeleton = "<ul>",
 		total = o.feedsUri.length,
 		title, link, summ, img;
-
-	o.current++;
 
 	for (var i = 0; i < o.numPost; i++) {
 		if (i == entry.length) break;
@@ -71,27 +69,32 @@ function listEntries(json) {
 
 		skeleton += '<li><div class="inner"' + (!o.autoHeight ? ' style="height:' + o.thumbSize + 'px;overflow:hidden;"' : '') + '>';
 		skeleton += (o.showThumbnail) ? img : '';
-		skeleton += '<div class="title"><a href="' + link + '">' + title + '</a></div>';
+		skeleton += '<div class="title"><a href="' + link + '"' + (o.newTabLink ? ' target="_blank"' : '') + '>' + title + '</a></div>';
 		skeleton += '<div class="summary">';
 		skeleton += '<span' + (!o.showSummary ? ' style="display:none;"' : '')  + '>';
 		skeleton += (o.showSummary) ? summ : '';
 		skeleton += '</span></div>';
 		skeleton += '<span style="display:block;clear:both;"></span></div></li>';
 	}
-	skeleton += "</ul>";
-	el.className = o.listClass;
-	el.innerHTML = '<div class="main-title"><h4>' + o.feedsUri[o.current].name + '</h4></div>' + skeleton + '<div class="more-link"><a href="' + o.feedsUri[o.current].url.replace(/\/$/, "") + '/search/label/' + o.feedsUri[o.current].tag + o.readMore.endParam + '">' + o.readMore.text + '</a></div>';
-	ct.appendChild(el);
+	skeleton += '</ul>';
+	skeleton += '<div class="more-link"><a href="' + o.feedsUri[o.current].url.replace(/\/$/, "") + '/search/label/' + o.feedsUri[o.current].tag + o.readMore.endParam + '"' + (o.newTabLink ? ' target="_blank"' : '') + '>' + o.readMore.text + '</a></div>';
+	ct.children[o.current].innerHTML += skeleton;
 	o.onLoadFeed(o.current);
 	if ((o.current + 1) == total) o.onLoadComplete();
+
+	o.current++;
+
 }
 
 (function(o) {
-	var head = document.getElementsByTagName('head')[0];
+	var head = document.getElementsByTagName('head')[0],
+		cont = document.getElementById(o.containerId);
 	for (var i = 0, len = o.feedsUri.length; i < len; i++) {
+		cont.innerHTML += '<div class="' + o.listClass + '"><div class="main-title"><h4>' + o.feedsUri[i].name + '</h4></div>';
 		var script = document.createElement('script');
 			script.type = "text/javascript";
 			script.src = o.feedsUri[i].url + '/feeds/posts/summary' + (o.feedsUri[i].tag ? '/-/' + o.feedsUri[i].tag : '') + '?alt=json-in-script&max-results=' + o.numPost + '&callback=listEntries';
 		head.appendChild(script);
 	}
+	cont.innerHTML += '<div style="clear:both;"></div>';
 })(multiFeed_defaults);

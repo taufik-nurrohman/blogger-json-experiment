@@ -302,12 +302,14 @@ body {
   text-align:center;
 }
 
-.alignleft {
+.alignleft,
+.align-left {
   float:left;
   margin:0 2em .5em 0;
 }
 
-.alignright {
+.alignright,
+.align-right {
   float:right;
   margin:0 0 .5em 2em;
 }
@@ -446,7 +448,7 @@ function loadPosts(json) {
 		skeleton += '<h2 class="blog-post-title"><a href="' + link + '" title="Read the original blog post">' + entry[i].title.$t + '</a></h2>';
 		skeleton += '<time class="blog-post-published" datetime="' + date.join('-') + '">' + date[2] + ' ' + infiniteScroll.labels.monthNames[(parseInt(date[1],10)-1)] + ' ' + date[0] + '</time>';
 		skeleton += '<div class="blog-post-body">' + content + '</div>';
-		skeleton += '<div class="comment-section" id="comment-' + postNum + '"><a title="Show comments" href="#comment-' + postNum + '" onclick="loadJSON(\'' + commentFeed + '?alt=json-in-script&callback=loadPostComments\', \'comment-' + postNum + '\');commentFormUrl=\'' + formUrl + '\';return false;">' + commentNum + '</a></div>';
+		skeleton += '<div class="comment-section" id="comment-' + postNum + '"><a title="Show comments" href="#comment-' + postNum + '" onclick="loadJSON(\'' + commentFeed + '?alt=json-in-script&reverse=false&callback=loadPostComments\', \'comment-' + postNum + '\');commentFormUrl=\'' + formUrl + '\';return false;">' + commentNum + '</a></div>';
 		skeleton += '</div>';
 
 	}
@@ -468,7 +470,6 @@ function loadPostComments(json) {
 		skeleton = "";
 	if (entry !== undefined) {
 
-		entry.reverse();
 		skeleton = '<ol>';
 
 		for (var i = 0, len = entry.length; i < len; i++) {
@@ -476,7 +477,7 @@ function loadPostComments(json) {
 			content = ("content" in entry[i]) ? entry[i].content.$t : "";
 			author = entry[i].author[0].name.$t;
 			commentator = (entry[i].author) ? '<a href="' + entry[i].author[0].uri.$t + '">' + author + '</a>' : author;
-			avatar = entry[i].author[0].gd$image.src.replace(/\/s[0-9]+/,"/s36-c").replace(/http\:/,"");
+			avatar = entry[i].author[0].gd$image.src.replace(/\/s[0-9]+(\-c)?/,"/s36-c").replace(/http\:/,"");
 			published = entry[i].gd$extendedProperty[1].value;
 			isopub = entry[i].published.$t;
 			deleteUri = entry[i]["thr$in-reply-to"].ref.replace(/^(.*?)blog-(.*?)\.post-(.*?)$/,"http://www.blogger.com/delete-comment.g?blogID=$2&postID=$3");;

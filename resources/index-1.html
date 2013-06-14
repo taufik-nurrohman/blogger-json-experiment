@@ -410,6 +410,8 @@ function loadPosts(json) {
 
 	for (var i = 0; i < infiniteScroll.numpost; i++) {
 
+		if (i == entry.length) break;
+
 		postNum = postNum + infiniteScroll.numpost;
 
 		for (var j = 0, jen = entry[i].link.length; j < jen; j++) {
@@ -473,6 +475,8 @@ function loadPostComments(json) {
 		skeleton = '<ol>';
 
 		for (var i = 0, len = entry.length; i < len; i++) {
+
+			if (i == entry.length) break;
 
 			content = ("content" in entry[i]) ? entry[i].content.$t : "";
 			author = entry[i].author[0].name.$t;

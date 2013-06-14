@@ -375,7 +375,7 @@ body {
 
 // Widget config start
 var infiniteScroll = {
-	url: 'http://www.dte.web.id',
+	url: 'http://dte-feed.blogspot.com',
 	numpost: 3,
 	containerId: 'blog-content',
 	loader: 'feed-loading-indicator',
@@ -440,7 +440,7 @@ function loadPosts(json) {
 		// Ignore/remove this if you want to develop all of this script
 		content = content.replace(/<div class="jsfiddle-demo(.*?)data-src="(.*?)"(.*?)div>/ig,"<iframe src=\"$2\" class=\"jsfiddle-demo\"></iframe>").replace(/ href="\//g," href=\"" + infiniteScroll.url + "/");
 		content = content.replace(/<code class="(.*?)">(.[\w\W\n]+?)<\/code>/ig, function(m) {
-			return m.replace(/\.(.*?)\(/g,".<span style='color:#666;'>[cencored]</span>(").replace(/(&lt;|&gt;)/ig,"<span style='color:#666;'>[this way]</span>").replace(/^/g,"<em>[Some code snippet just removed and [cencored]\nin order to make sure you not just read my blog post\nfrom this experiment page.\nPlease visit the original blog post <a title='Read more...' href='" + link + "'>here</a>]</em>\n\n");
+			return m.replace(/\.(.*?)\(/g,".<span style='color:#666;'>[cencored]</span>(").replace(/(&lt;|&gt;)/ig,"<span style='color:#666;'>[this way]</span>").replace(/^/g,"<em>[Some code snippet just removed and [cencored]\nin order to make sure you not just read my blog post\nfrom this experiment page.\nPlease visit the original blog post <a title='Read more...' href='" + link.replace(/dte\-feed\.blogspot\.com/,"dte.web.id") + "'>here</a>]</em>\n\n");
 		});
 		// End private regex
 

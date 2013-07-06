@@ -360,8 +360,6 @@ function getCode() {
 		str = str.replace(/\n\s+/g, "").replace(/\n(&lt;\/b:if&gt;)/g, "$1").replace(/\: (\&|[0-9]|true|false|function)/g, ":$1").replace(/function\(\) \{/g, "function(){").replace(/(labelArray|relatedPostConfig) \= /g, "$1=");
 	}
 	code.innerHTML = str;
-	document.documentElement.scrollTop = submit.offsetTop - 10;
-	document.body.scrollTop = submit.offsetTop - 10;
 }
 submitConfig();
 var once = false;
@@ -371,6 +369,8 @@ submit.onclick = function() {
 		once = true;
 	}
 	submitConfig();
+	document.documentElement.scrollTop = this.offsetTop - 10;
+	document.body.scrollTop = this.offsetTop - 10;
 	return false;
 };
 </script>

@@ -52,7 +52,7 @@ var randomRelatedIndex, showRelatedPost;
 			tt = entry[i].title.$t;
 			title = (def.titleLength !== "auto" && def.titleLength < tt.length) ? tt.substring(0, def.titleLength) + '&hellip;' : tt;
 			img = ("media$thumbnail" in entry[i] && def.thumbnailSize !== false) ? entry[i].media$thumbnail.url.replace(/\/s[0-9]+(\-c)?/, "/s" + def.thumbnailSize + "-c") : def.noImage;
-			summary = ("summary" in entry[i] && def.summaryLength > 0) ? entry[i].summary.$t.replace(/<br ?\/?>/g, " ").replace(/<.*?>/g, "").substring(0, def.summaryLength) + '&hellip;' : "";
+			summary = ("summary" in entry[i] && def.summaryLength > 0) ? entry[i].summary.$t.replace(/<br ?\/?>/g, " ").replace(/<.*?>/g, "").replace(/[<>]/g, "").substring(0, def.summaryLength) + '&hellip;' : "";
 			for (var j = 0, jen = entry[i].link.length; j < jen; j++) {
 				link = (entry[i].link[j].rel == "alternate") ? entry[i].link[j].href : "#";
 			}

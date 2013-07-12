@@ -65,7 +65,7 @@ function listEntries(json) {
 	for (var i = 0; i < o.numPost; i++) {
 		if (i == entry.length) break;
 		title = (o.titleLength !== "auto") ? entry[i].title.$t.substring(0, o.titleLength) + (o.titleLength < entry[i].title.$t.length ? '&hellip;' : '') : entry[i].title.$t;
-		summ = ("summary" in entry[i]) ? entry[i].summary.$t.replace(/<br ?\/?>/g, " ").replace(/<.*?>/g, "") : "";
+		summ = ("summary" in entry[i]) ? entry[i].summary.$t.replace(/<br ?\/?>/g, " ").replace(/<.*?>/g, "").replace(/[<>]/g, "") : "";
 		summ = (o.summaryLength < summ.length) ? summ.substring(0, o.summaryLength) + '&hellip;' : summ;
 		img = ("media$thumbnail" in entry[i]) ? '<img src="' + entry[i].media$thumbnail.url.replace(/\/s72(\-c)?\//, "/s" + o.thumbSize + "-c/") + '" style="width:' + o.thumbSize + 'px;height:' + o.thumbSize + 'px;">' : '<span class="fake-img" style="width:' + o.thumbSize + 'px;height:' + o.thumbSize + 'px;"></span>';
 		for (var j = 0, jen = entry[i].link.length; j < jen; j++) {

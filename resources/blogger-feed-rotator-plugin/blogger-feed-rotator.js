@@ -211,7 +211,7 @@ function makeSlider(config) {
 				if (i == entry.length) break;
 				title = entry[i].title.$t;
 				thumb = ("media$thumbnail" in entry[i]) ? '<img alt="' + title + '" src="' + entry[i].media$thumbnail.url.replace(/\/s72\-c/, '/s' + defaults.thumbWidth + (defaults.squareThumb ? '-c' : '')) + '" style="width:' + defaults.thumbWidth + 'px;height:' + (defaults.squareThumb ? defaults.thumbWidth + 'px' : 'auto') + '">' : '<img src="' + defaults.noThumb + '" style="width:' + defaults.thumbWidth + 'px;height:' + (defaults.squareThumb ? defaults.thumbWidth + 'px' : 'auto') + '">';
-				summary = ("summary" in entry[i] && defaults.summaryLength > 0) ? entry[i].summary.$t.replace(/<br ?\/?>/ig," ").replace(/<(.*?)>/g,"") : "";
+				summary = ("summary" in entry[i] && defaults.summaryLength > 0) ? entry[i].summary.$t.replace(/<br ?\/?>/ig," ").replace(/<.*?>/g,"").replace(/[<>]/g,"") : "";
 				summary = (defaults.summaryLength < summary.length) ? summary.substring(0, defaults.summaryLength) + '&hellip;' : summary;
 
 				for (var j = 0, jen = entry[i].link.length; j < jen; j++) {

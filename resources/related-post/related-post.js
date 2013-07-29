@@ -36,7 +36,8 @@ var randomRelatedIndex, showRelatedPost;
 		}
 		return arr;
 	}, la = (typeof labelArray == 'object' && labelArray.length > 0) ? '/-/' + shu(labelArray)[0] : "", rri = function(json) {
-		var si = ri(1, (json.feed.openSearch$totalResults.$t - def.numPosts));
+		var to = json.feed.openSearch$totalResults.$t - def.numPosts,
+			si = ri(1, (to > 0 ? to : 1));
 		lo(def.homePage.replace(/\/$/, "") + '/feeds/posts/summary' + la + '?alt=json-in-script&orderby=updated&start-index=' + si + '&max-results=' + def.numPosts + '&callback=showRelatedPost');
 	}, srp = function(json) {
 		var ct = document.getElementById(def.containerId),

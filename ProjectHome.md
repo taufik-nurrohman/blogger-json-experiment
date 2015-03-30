@@ -1,0 +1,1 @@
+This is a project page for storing all my experiments with Blogger JSON to create advanced widgets with JavaScript. Something that's not possible presented in my Blogger tutorial.
